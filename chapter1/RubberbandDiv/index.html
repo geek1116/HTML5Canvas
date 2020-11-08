@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: rgba(100, 145, 250, 0.3);
+            }
+            
+            #canvas {
+                margin: 0 0 20px 20px;
+                cursor: crosshair;
+                padding: 0;
+            }
+
+            #controls {
+                margin: 20px 0px 20px 20px;
+            }
+
+            #rubberbanDiv {
+                position: absolute;
+                border: 2px dashed #ccc;
+                cursor: crosshair;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="controls">
+            <input type="button" value="Reset" id="resetButton">
+        </div>
+
+        <div id="rubberbanDiv"></div>
+
+        <canvas id="canvas" width="800" height="418">
+            Canvas not support
+        </canvas>
+
+        <script src="RubberbanDiv.js"></script>
+    </body>
+</html>
