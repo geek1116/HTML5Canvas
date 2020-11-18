@@ -44,7 +44,7 @@ function strokeCutoutsShapes() {
     addRectanglePath();
     addTrianglePath();
     context.stroke();
-    
+
     context.resotre();
 }
 
@@ -84,6 +84,5 @@ function addTrianglePath() {
 }
 
 // -------------------- Initialization ----------
-
 context.fillStyle = 'goldenrod';
 draw();
