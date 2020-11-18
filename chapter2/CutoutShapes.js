@@ -84,5 +84,6 @@ function addTrianglePath() {
 }
 
 // -------------------- Initialization ----------
+
 context.fillStyle = 'goldenrod';
 draw();
