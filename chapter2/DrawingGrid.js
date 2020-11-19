@@ -1,4 +1,4 @@
-let context = document.querySelector('canvas').getContext('2d');
+let context = document.querySelector('#canvas').getContext('2d');
 
 function drawGrid(color, stepx, stepy) {
     context.strokeStyle = color;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drawing Lines with Rubber Bands</title>
+
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+            #controls {
+                position: absolute;
+                left: 25px;
+                top: 25px;
+            }
+
+            #canvas {
+                background-color: #fff;
+                cursor: pointer;
+                margin-left: 10px;
+                margin-top: 10px;
+                box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+    </head>
+    <body>
+        <Canvas id="canvas" width="600" height="400">
+            Canvas not supported
+        </Canvas>
+
+        <div id="controls">
+            Stroke color: <select id="strokeStyleSelect">
+                <option value="red">red</option>
+                <option value="green">green</option>
+                <option value="blue">blue</option>
+                <option value="orange">orange</option>
+            </select>
+
+            Guidewires:
+            <input id="guidewireCheckbox" type="checkbox" checked>
+            <input id="eraseAllButton" type="button" value="Erase all">
+        </div>
+
+        <script src="./DrawingLineWithRubberBands.js"></script>
+    </body>
+</html>
