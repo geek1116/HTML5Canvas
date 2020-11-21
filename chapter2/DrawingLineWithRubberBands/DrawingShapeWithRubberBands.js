@@ -2,6 +2,7 @@ let canvas = document.querySelector('#canvas'),
     context  = canvas.getContext('2d'),
     eraseAllButton = document.querySelector('#eraseAllButton'),
     strokeStyleSelect = document.querySelector('#strokeStyleSelect'),
+    strokeShapeSelect = document.querySelector('#strokeShapeSelect'),
     guidewireCheckbox = document.querySelector('#guidewireCheckbox'),
     guidewires = guidewireCheckbox.checked,
     drawingSurfaceImageData,
@@ -33,8 +34,14 @@ function resotreDrawingSurface() {
 
 function updateRubberband(loc) {
     updateRubberbandRectangle(loc);
-    //drawRubberbandShape(loc);     // draw line
-    drawRubberbandsShape_Circle(loc);   // draw circle
+    switch(strokeShapeSelect.value) {
+        case 'line':
+            drawRubberbandShape(loc);
+            break;
+        case 'circle':
+            drawRubberbandsShape_Circle(loc);
+            break;
+    }
 }
 
 function updateRubberbandRectangle(loc) {   // calculate rectangle's geometric info
@@ -103,7 +110,7 @@ canvas.addEventListener('mousedown', (e) => {
     dragging = true;
 });
 
-canvas.addEventListener('mousemove', (e) => {
+document.addEventListener('mousemove', (e) => {
     if(dragging) {
         e.preventDefault();
 
@@ -118,11 +125,13 @@ canvas.addEventListener('mousemove', (e) => {
     }
 });
 
-canvas.addEventListener('mouseup', (e) => {
-    const loc = windowToCanvas(e.clientX, e.clientY);
-    resotreDrawingSurface();
-    updateRubberband(loc);
-    dragging = false;
+document.addEventListener('mouseup', (e) => {
+    if(dragging) {
+        const loc = windowToCanvas(e.clientX, e.clientY);
+        resotreDrawingSurface();
+        updateRubberband(loc);
+        dragging = false;
+    }
 });
 
 // -------------- Controls event handlers --------
