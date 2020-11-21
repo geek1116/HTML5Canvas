@@ -33,7 +33,8 @@ function resotreDrawingSurface() {
 
 function updateRubberband(loc) {
     updateRubberbandRectangle(loc);
-    drawRubberbandShape(loc);
+    //drawRubberbandShape(loc);     // draw line
+    drawRubberbandsShape_Circle(loc);   // draw circle
 }
 
 function updateRubberbandRectangle(loc) {   // calculate rectangle's geometric info
@@ -48,6 +49,14 @@ function drawRubberbandShape(loc) {
     context.beginPath();
     context.moveTo(mousedown.x, mousedown.y);
     context.lineTo(loc.x, loc.y);
+    context.stroke();
+}
+
+function drawRubberbandsShape_Circle(loc) {
+    let radius = Math.sqrt(Math.pow(loc.x - mousedown.x, 2) + Math.pow(loc.y - mousedown.y, 2));
+
+    context.beginPath();
+    context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2, false);
     context.stroke();
 }
 
