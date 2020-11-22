@@ -36,7 +36,7 @@ function updateRubberband(loc) {
     updateRubberbandRectangle(loc);
     switch(strokeShapeSelect.value) {
         case 'line':
-            drawRubberbandShape(loc);
+            drawRubberbandShape_line(loc);
             break;
         case 'circle':
             drawRubberbandsShape_Circle(loc);
@@ -52,7 +52,7 @@ function updateRubberbandRectangle(loc) {   // calculate rectangle's geometric i
     rubberbandRectangle.height = Math.abs(loc.y - mousedown.y);
 }
 
-function drawRubberbandShape(loc) {
+function drawRubberbandShape_line(loc) {
     context.beginPath();
     context.moveTo(mousedown.x, mousedown.y);
     context.lineTo(loc.x, loc.y);

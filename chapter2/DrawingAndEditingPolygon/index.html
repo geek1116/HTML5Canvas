@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drawing And Editing Polygon</title>
+        <style>
+            body {
+                background-color: #eee;
+            }
+
+            #controls {
+                position: absolute;
+                left: 25px;
+                top: 25px;
+            }
+
+            #canvas {
+                background-color: #fff;
+                cursor: crosshair;
+                margin-left: 10px;
+                margin-top: 10px;
+                box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+    </head>
+    
+    <body>
+        <Canvas id="canvas" width="600" height="400">
+            Canvas not supported
+        </Canvas>
+
+        <div id="controls">
+            Sides: <input id="sides-input" type="number" min="3" max="10" value="3"/>
+
+            Start angle: <input id="start-angle-input" type="number" min="0" max="360" value="0"/>
+
+            <input id="isEditingCheckbox" type="checkbox">
+            <input id="eraseAllButton" type="button" value="Erase all">
+        </div>
+
+        <script src="./Polygon.js"></script>
+        <script src="./DrawingAndEditingPolygon.js"></script>
+    </body>
+</html>
