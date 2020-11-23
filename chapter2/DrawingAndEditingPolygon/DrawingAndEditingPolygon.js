@@ -99,7 +99,7 @@ function drawPolygon(polygon) {
 
 function drawPolygons() {
     polygons.forEach(polygon => {
-        drawPolygon(Polygon);
+        drawPolygon(polygon);
     });
 }
 
@@ -129,6 +129,16 @@ canvas.addEventListener('mousedown', (e) => {
     e.preventDefault();
 
     if(editing) {
+        for(let i = polygons.length - 1; i >= 0; --i) {
+            polygons[i].createPath(context);
+            if(context.isPointInPath(loc.x, loc.y)) {
+                dragging = polygons[i];
+                draggingOffsetX = loc.x - polygons[i].x;
+                draggingOffsetY = loc.y - polygons[i].y;
+                return;
+            }
+        }
+
     } else {
         startDragging(loc);
         dragging = true;
@@ -142,6 +152,10 @@ canvas.addEventListener('mousemove', (e) => {
 
     if(dragging) {
         if(editing) {
+            dragging.x = loc.x - draggingOffsetX;
+            dragging.y = loc.y - draggingOffsetY;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawPolygons();
         } else {
             resotreDrawingSurface();
             updateRubberband(loc, sides, startAngle);
@@ -163,6 +177,7 @@ canvas.addEventListener('mouseup', (e) => {
 
 eraseAllButton.addEventListener('click', () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
+    polygons = [];
 });
 
 isEditingCheckbox.addEventListener('change', (e) => {
