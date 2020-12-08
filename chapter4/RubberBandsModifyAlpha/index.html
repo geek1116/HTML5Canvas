@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML5 Canvas</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      #controls {
+          margin: 20px;
+      }
+
+      #canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="controls">
+        <button id="resetBtn">Reset</button>
+    </div>
+
+    <canvas id="canvas" width="800" height="600">
+      Your browser can not support canvas
+    </canvas>
+
+    <script src="./RubberBandWithAlpha.js"></script>
+  </body>
+</html>
