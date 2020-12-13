@@ -10,6 +10,10 @@
         box-sizing: border-box;
       }
 
+      #controls {
+          margin: 20px;
+      }
+
       #canvas {
         border: 1px solid #ccc;
       }
@@ -17,10 +21,14 @@
   </head>
   <body>
 
-    <canvas id="canvas" width="800" height="600">
+    <div id="controls">
+        <button id="shiftBtn">Sunglasses</button>
+    </div>
+
+    <canvas id="canvas" width="800" height="368">
       Your browser can not support canvas
     </canvas>
 
-    <script src=""></script>
+    <script src="./sunglasses.js"></script>
   </body>
 </html>
