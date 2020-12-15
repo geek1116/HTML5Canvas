@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Video</title>
+
+        <style>
+            body {
+                background: #dddddd;
+            }
+
+            .floatingControls {
+                position: absolute;
+                left: 50px;
+                top: 200px;
+            }
+
+            #canvas {
+                background: #ffffff;
+                border: thin solid #aaaaaa;
+            }
+
+            #video {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <video id="video" src="mov_bbb.mp4"></video>
+
+        <canvas id="canvas" width="300" height="176">
+            Canvas not supported
+        </canvas>
+
+        <div id="controls" class="floatingControls">
+            <input type="button" id="controlButton" value='Play' />
+            <label><input type="checkbox" id="controlCheckbox" checked />Color</label>
+            <label><input type="checkbox" id="flipCheckbox">Flip</label>
+        </div>
+
+        <script src="video.js"></script>
+    </body>
+</html>
