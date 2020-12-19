@@ -16,6 +16,32 @@ class SpriteSheet {
     }
 }
 
+const runInPlace = {
+    lastAdvance: 0,
+    PAGEFLIP_INTERVAL: 100,
+
+    execute: function(sprite, context, time) {
+        if(time - this.lastAdvance > this.PAGEFLIP_INTERVAL) {
+            sprite.painter.advance();
+            this.lastAdvance = time;
+        }
+    }
+}
+
+const moveLeftToRight = {
+    lastMove: 0,
+
+    execute: function(sprite, context, time) {
+        if(this.lastMove !== 0) {
+            sprite.left += sprite.velocityX * (time - this.lastMove) / 1000;
+
+            if(sprite.left > canvas.width) sprite.left = -sprite.width;
+        }
+
+        this.lastMove = time;
+    }
+}
+
 
 const canvas = document.querySelector('#canvas'),
     context = canvas.getContext('2d'),
@@ -29,7 +55,7 @@ const canvas = document.querySelector('#canvas'),
         {x: 400, y: 10, w: 100, h:90},
         {x: 500, y: 10, w: 100, h:90}
     ],
-    sprite = new Sprite('runner', new SpriteSheet(runnerCells)),
+    sprite = new Sprite('runner', new SpriteSheet(runnerCells), [runInPlace, moveLeftToRight]),
     PAGEFLIP_INTERVAL = 100;
 
 let paused = true,
@@ -52,12 +78,9 @@ function animate(time) {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(spriteSheet, 0, 0);
-    sprite.paint(context);
 
-    if(time - lastAdvance > PAGEFLIP_INTERVAL) {
-        sprite.painter.advance();
-        lastAdvance = time;
-    }
+    sprite.update(context, time);
+    sprite.paint(context);
 
     requestAnimationFrame(animate);
 }
@@ -69,8 +92,10 @@ spriteSheet.onload = () => {
     context.drawImage(spriteSheet, 0, 0);
 }
 
-sprite.left = 100;
+sprite.left = 0;
 sprite.top = 300;
+sprite.velocityX = 200;  //  pixels/second
+sprite.width = 100;
 
 animateBtn.addEventListener('click', () => {
     if(paused) {
